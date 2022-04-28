@@ -19,6 +19,10 @@
 	.w2ui-grid-data {
 		text-align: center;
 	}
+
+	.w2ui-grid .w2ui-grid-body div.w2ui-col-header {
+		padding-left: 10px !important;
+	}
 </style>
 
 <body style="width: 100%; height: 100%; margin:0px;">
@@ -73,7 +77,7 @@
 
 					],
 					columns: [
-						{field: 'min', text: 'Min', size: '4%', sortable: true},
+						{field: 'min', text: 'min', size: '4%', sortable: true},
 						{field: 'le', text: 'League', size: '16%', min: '100px', sortable: true},
 						{field: 'ht', text: '', size: '20%', min: '100px'},
 						{field: 'hc', text: '🚩', tooltip: 'Corners', size: '4%', sortable: true},
@@ -85,13 +89,10 @@
 						{field: 'aa', text: '🎯', tooltip: 'Dangerous attacks', size: '4%', sortable: true},
 						{field: 'ac', text: '🚩', tooltip: 'Corners', size: '4%', sortable: true},
 						{field: 'at', text: '', size: '20%', min: '100px'},
-						{field: 'grade', text: '1X2', size: '4%', sortable: true},
+						{field: 'grade', text: '1x2', size: '4%', sortable: true},
 						{field: 'rate', text: '%', size: '4%', sortable: true},
 					],
-					records: data,
-					sortData: [
-						{field: 'ha', direction: 'desc'},
-					]
+					records: data
 				});
 			});
 		});
