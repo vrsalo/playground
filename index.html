@@ -44,7 +44,7 @@
 
 					data[i].w2ui = {"style": "background-color: " + color}
 					data[i].grade = grade
-					var calc1 = calc(data[i].hs, data[i].as, data[i].ha, data[i].aa)
+					var calc1 = calc(data[i].hs, data[i].as, data[i].ha, data[i].aa, data[i].hc, data[i].ac)
 					data[i].grade = calc1 > 0 ? 1 : 2
 					data[i].rate = Math.abs(calc1)
 				}
@@ -73,18 +73,20 @@
 
 					],
 					columns: [
-						{field: 'min', text: 'Min', size: '5%', sortable: true},
-						{field: 'le', text: 'League', size: '15%', min: '100px', sortable: true},
+						{field: 'min', text: 'Min', size: '4%', sortable: true},
+						{field: 'le', text: 'League', size: '16%', min: '100px', sortable: true},
 						{field: 'ht', text: '', size: '20%', min: '100px'},
-						{field: 'ha', text: '⇋', size: '5%', sortable: true},
-						{field: 'hs', text: '🥅', size: '5%', sortable: true},
-						{field: 'hg', text: '⚽', size: '5%', sortable: true},
-						{field: 'ag', text: '⚽', size: '5%', sortable: true},
-						{field: 'as', text: '🥅', size: '5%', sortable: true},
-						{field: 'aa', text: '⇋', size: '5%', sortable: true},
+						{field: 'hc', text: '🚩', tooltip: 'Corners', size: '4%', sortable: true},
+						{field: 'ha', text: '🎯', tooltip: 'Dangerous attacks', size: '4%', sortable: true},
+						{field: 'hs', text: '🥅', tooltip: 'Shots on target', size: '4%', sortable: true},
+						{field: 'hg', text: '⚽', tooltip: 'Goals', size: '4%', sortable: true},
+						{field: 'ag', text: '⚽', tooltip: 'Goals', size: '4%', sortable: true},
+						{field: 'as', text: '🥅', tooltip: 'Shots on target', size: '4%', sortable: true},
+						{field: 'aa', text: '🎯', tooltip: 'Dangerous attacks', size: '4%', sortable: true},
+						{field: 'ac', text: '🚩', tooltip: 'Corners', size: '4%', sortable: true},
 						{field: 'at', text: '', size: '20%', min: '100px'},
-						{field: 'grade', text: 'shootRate', size: '5%', sortable: true},
-						{field: 'rate', text: 'rate', size: '5%', sortable: true},
+						{field: 'grade', text: 'shootRate', size: '4%', sortable: true},
+						{field: 'rate', text: 'rate', size: '4%', sortable: true},
 					],
 					records: data,
 					sortData: [
@@ -94,8 +96,8 @@
 			});
 		});
 
-		function calc(a, b, c, d) {
-			var x = 4 * (a - b) + (c - d)
+		function calc(a, b, c, d, e, f) {
+			var x = 4 * (a - b) + (c - d) + 2 * (e - f)
 			x = Math.round(x * 100) / 100
 			return x
 		}
