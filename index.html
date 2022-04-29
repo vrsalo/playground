@@ -36,9 +36,12 @@
 			$.get("https://kladara-19a52.firebaseio.com/games.json", function (data) {
 				for (var i in data) {
 					data[i].recid = i;
+					var color = null;
 
-					data[i].w2ui = {"style": "background-color: " + data[i].C}
-					if (data[i].X == 2 && data[i].hg > data[i].ag || data[i].X == 1 && data[i].hg < data[i].ag) data[i].w2ui["style"] += ";color: blue"
+					if (Math.abs(data[i].hs - data[i].as) > 9) color = "#d0e9c6"
+					if (data[i].X == 2 && data[i].hg > data[i].ag || data[i].X == 1 && data[i].hg < data[i].ag) color = "#f2dede"
+
+					if (color) data[i].w2ui = {"style": "background-color: " + color}
 				}
 
 				$('#grid').w2grid({

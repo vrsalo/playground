@@ -29,18 +29,6 @@ function calc(a, b, c, d, e, f) {
 	return x
 }
 
-function color(hs, as) {
-	var x = Math.abs(hs - as);
-	switch (true) {
-		case (x >= 10):
-			return "#f2dede";
-		case (x >= 5):
-			return "#d0e9c6";
-		default:
-			return "none";
-	}
-}
-
 function getMatches(element) {
 	var data = [];
 	var tableRows = element.getChildren();
@@ -76,8 +64,6 @@ function getMatches(element) {
 			var SOT = children[11].getChild("div").getValue().split(" - ");
 			tempMatch.hs = Number(SOT[0]);
 			tempMatch.as = Number(SOT[1]);
-
-			tempMatch.C = color(tempMatch.hs, tempMatch.as)
 
 			var calc1 = calc(tempMatch.hs, tempMatch.as, tempMatch.ha, tempMatch.aa, tempMatch.hc, tempMatch.ac)
 			tempMatch.X = calc1 > 0 ? 1 : 2
