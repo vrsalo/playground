@@ -9,8 +9,6 @@
 
 <style>
 	body {
-		-moz-transform: scale(1.3);
-		/* for Firefox, default 1*/
 		zoom: 130%;
 		/* For Chrome, IE, default 100%*/
 	}
@@ -32,16 +30,18 @@
 <body style="width: 100%; height: 100%; margin:0px;">
 	<div id="grid" style="width: 100%; height: 100%;"></div>
 	<script type="text/javascript">
+		var record, color;
 		$(function () {
 			$.get("https://kladara-19a52.firebaseio.com/games.json", function (data) {
 				for (var i in data) {
-					data[i].recid = i;
-					var color = null;
+					record = data[i];
+					record.recid = i;
+					color = null;
 
-					if (Math.abs(data[i].hs - data[i].as) > 9) color = "#d0e9c6"
-					if (data[i].F>50 && (data[i].X == 2 && data[i].hg > data[i].ag || data[i].X == 1 && data[i].hg < data[i].ag)) color = "#f2dede"
+					if (Math.abs(record.hs - record.as) > 9) color = "#d0e9c6"
+					if (record.F > 50 && (record.X == 2 && record.hg > record.ag || record.X == 1 && record.hg < record.ag)) color = "#f2dede"
 
-					if (color) data[i].w2ui = {"style": "background-color: " + color}
+					if (color) record.w2ui = {"style": "background-color: " + color}
 				}
 
 				$('#grid').w2grid({
