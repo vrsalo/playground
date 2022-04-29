@@ -36,25 +36,7 @@
 			$.get("https://kladara-19a52.firebaseio.com/games.json", function (data) {
 				for (var i in data) {
 					data[i].recid = i;
-					var x = Math.abs(data[i].hs - data[i].as);
-					var color;
-					switch (true) {
-						case (x >= 10):
-							color = "#f2dede"; grade = 2;
-							break;
-						case (x >= 5):
-							color = "#d0e9c6"; grade = 1;
-							break;
-						default:
-							color = "none"; grade = 0;
-							break;
-					}
-
-					data[i].w2ui = {"style": "background-color: " + color}
-					data[i].grade = grade
-					var calc1 = calc(data[i].hs, data[i].as, data[i].ha, data[i].aa, data[i].hc, data[i].ac)
-					data[i].grade = calc1 > 0 ? 1 : 2
-					data[i].rate = Math.abs(calc1)
+					data[i].w2ui = {"style": "background-color: " + data[i].C}
 				}
 
 				$('#grid').w2grid({
@@ -93,19 +75,13 @@
 						{field: 'aa', text: '🎯', tooltip: 'Dangerous attacks', size: '4%', sortable: true},
 						{field: 'ac', text: '🚩', tooltip: 'Corners', size: '4%', sortable: true},
 						{field: 'at', text: '', size: '20%', min: '100px'},
-						{field: 'grade', text: '1x2', size: '4%', sortable: true},
-						{field: 'rate', text: '%', size: '4%', sortable: true},
+						{field: 'X', text: 'X', size: '4%', sortable: true},
+						{field: 'F', text: '%', size: '4%', sortable: true},
 					],
 					records: data
 				});
 			});
 		});
-
-		function calc(a, b, c, d, e, f) {
-			var x = 4 * (a - b) + (c - d) + 2 * (e - f)
-			x = Math.round(x * 100) / 100
-			return x
-		}
 
 		setTimeout(function () {location.reload()}, 60000);
 
