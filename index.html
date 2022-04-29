@@ -36,7 +36,9 @@
 			$.get("https://kladara-19a52.firebaseio.com/games.json", function (data) {
 				for (var i in data) {
 					data[i].recid = i;
+
 					data[i].w2ui = {"style": "background-color: " + data[i].C}
+					if (data[i].X == 2 && data[i].hg > data[i].ag || data[i].X == 1 && data[i].hg < data[i].ag) data[i].w2ui["style"] += ";color: blue"
 				}
 
 				$('#grid').w2grid({
@@ -48,8 +50,8 @@
 					multiSearch: true,
 					columnGroups: [
 						{text: '', span: 2},
-						{text: 'Home', span: 4},
-						{text: 'Away', span: 4}
+						{text: 'Home', span: 5},
+						{text: 'Away', span: 5}
 					],
 					searches: [
 						{field: 'min', label: 'Minute ', type: 'int'},
