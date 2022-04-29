@@ -39,7 +39,7 @@
 					var color = null;
 
 					if (Math.abs(data[i].hs - data[i].as) > 9) color = "#d0e9c6"
-					if (data[i].X == 2 && data[i].hg > data[i].ag || data[i].X == 1 && data[i].hg < data[i].ag) color = "#f2dede"
+					if (data[i].F>50 && (data[i].X == 2 && data[i].hg > data[i].ag || data[i].X == 1 && data[i].hg < data[i].ag)) color = "#f2dede"
 
 					if (color) data[i].w2ui = {"style": "background-color: " + color}
 				}
