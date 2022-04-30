@@ -35,13 +35,7 @@
 			$.get("https://kladara-19a52.firebaseio.com/games.json", function (data) {
 				for (var i in data) {
 					record = data[i];
-					record.recid = i;
-					color = null;
-
-					if (Math.abs(record.hs - record.as) > 9) color = "#d0e9c6"
-					if (record.F > 50 && (record.X == 2 && record.hg > record.ag || record.X == 1 && record.hg < record.ag)) color = "#f2dede"
-
-					if (color) record.w2ui = {"style": "background-color: " + color}
+					if (record.S) record.w2ui = {"style": "background-color: " + (record.S === 1 ? "#d0e9c6" : "#f2dede")}
 				}
 
 				$('#grid').w2grid({

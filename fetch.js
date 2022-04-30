@@ -23,10 +23,19 @@ function doGet() {
 	//return ContentService.createTextOutput(JSON.stringify(matchesArray)).setMimeType(ContentService.MimeType.JSON);
 }
 
-function calc(a, b, c, d, e, f) {
+function calc(a, b, c, d, e, f, min) {
 	var x = 4 * (a - b) + (c - d) + 2 * (e - f)
-	x = Math.round(x * 100) / 100
+	if ((min > 30)) x = x * 90 / min;
+
+	x = Math.round((x * 100) / 100)
 	return x
+}
+
+function color(X, F, HG, AG, HS, AS) {
+	if (Math.abs(HS - AS) > 9)
+		return 1  // shoot diff 10+
+	if (F > 50 && (X == 2 && HG > AG || X == 1 && HG < AG))
+		return 2  // loosing but should be winning and formula 50+
 }
 
 function getMatches(element) {
@@ -46,6 +55,7 @@ function getMatches(element) {
 			}
 			//Logger.log(elt);   
 			var tempMatch = new Object();
+			tempMatch.recid = i;
 			//tempMatch.mi = Number(elt.getAttribute('data-match_id').getValue());
 			//tempMatch.li = Number(elt.getAttribute('data-league_id').getValue());
 			tempMatch.le = children[1].getValue().trim();
@@ -65,9 +75,10 @@ function getMatches(element) {
 			tempMatch.hs = Number(SOT[0]);
 			tempMatch.as = Number(SOT[1]);
 
-			var calc1 = calc(tempMatch.hs, tempMatch.as, tempMatch.ha, tempMatch.aa, tempMatch.hc, tempMatch.ac)
+			var calc1 = calc(tempMatch.hs, tempMatch.as, tempMatch.ha, tempMatch.aa, tempMatch.hc, tempMatch.ac, tempMatch.min)
 			tempMatch.X = calc1 > 0 ? 1 : 2
 			tempMatch.F = Math.abs(calc1)
+			tempMatch.S = color(tempMatch.X, tempMatch.F, tempMatch.hg, tempMatch.ag, tempMatch.hs, tempMatch.as);
 
 			data.push(tempMatch);
 		}
