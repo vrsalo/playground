@@ -56,8 +56,8 @@
 					multiSearch: true,
 					columnGroups: [
 						{text: '', span: 2},
-						{text: 'Home', span: 5},
-						{text: 'Away', span: 5}
+						{text: 'Home', span: 7},
+						{text: 'Away', span: 7}
 					],
 					searches: [
 						{field: 'min', label: 'Minute ', type: 'int'},
@@ -73,7 +73,14 @@
 					columns: [
 						{field: 'min', text: 'min', size: '4%', sortable: true},
 						{field: 'le', text: 'League', size: '16%', min: '100px', sortable: true},
-						{field: 'ht', text: '', size: '20%', min: '100px'},
+						{
+							field: 'ht', text: '', size: '20%', min: '100px',
+							render: function (rec, extra) {
+								return '<div>' + rec.ht + ' ' + (rec.hr && '🟥'.repeat(rec.hr)) + (rec.hy && '🟨'.repeat(rec.hy)) + '</div>';
+							}
+						},
+						{field: 'hr', text: '🟥', tooltip: 'Red Card', size: '4%', sortable: true, hidden: true},
+						{field: 'hy', text: '🟨', tooltip: 'Yellow Card', size: '4%', sortable: true, hidden: true},
 						{field: 'hc', text: '🚩', tooltip: 'Corners', size: '4%', sortable: true},
 						{field: 'ha', text: '🎯', tooltip: 'Dangerous attacks', size: '4%', sortable: true},
 						{field: 'hs', text: '🥅', tooltip: 'Shots on target', size: '4%', sortable: true},
@@ -82,7 +89,14 @@
 						{field: 'as', text: '🥅', tooltip: 'Shots on target', size: '4%', sortable: true},
 						{field: 'aa', text: '🎯', tooltip: 'Dangerous attacks', size: '4%', sortable: true},
 						{field: 'ac', text: '🚩', tooltip: 'Corners', size: '4%', sortable: true},
-						{field: 'at', text: '', size: '20%', min: '100px'},
+						{field: 'ay', text: '🟨', tooltip: 'Yellow Card', size: '4%', sortable: true, hidden: true},
+						{field: 'ar', text: '🟥', tooltip: 'Red Card', size: '4%', sortable: true, hidden: true},
+						{
+							field: 'at', text: '', size: '20%', min: '100px',
+							render: function (rec, extra) {
+								return '<div>' + rec.at + ' ' + (rec.ar && '🟥'.repeat(rec.ar)) + (rec.ay && '🟨'.repeat(rec.ay)) + '</div>';
+							}
+						},
 						{field: 'X', text: 'X', size: '4%', sortable: true},
 						{field: 'F', text: '%', size: '4%', sortable: true},
 					],

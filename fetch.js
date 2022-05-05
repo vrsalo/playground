@@ -25,17 +25,19 @@ function doGet() {
 
 function calc(a, b, c, d, e, f, min) {
 	var x = 4 * (a - b) + (c - d) + 2 * (e - f)
-	if ((min > 30)) x = x * 90 / min;
+	if ((min > 25)) x = x * 90 / min;
 
 	x = Math.round((x * 100) / 100)
 	return x
 }
 
 function color(X, F, HG, AG, HS, AS) {
+	var res = null
 	if (Math.abs(HS - AS) > 9)
-		return 1  // shoot diff 10+
-	if (F > 50 && (X == 2 && HG > AG || X == 1 && HG < AG))
-		return 2  // loosing but should be winning and formula 50+
+		res = 1  // shoot diff 10+
+	if (F > 75 && (X == 2 && HG > AG || X == 1 && HG < AG))
+		res = 2  // loosing but should be winning and formula 50+
+	if (res) return res;
 }
 
 function getMatches(element) {
@@ -61,7 +63,11 @@ function getMatches(element) {
 			tempMatch.le = children[1].getValue().trim();
 			tempMatch.min = Number(children[3].getValue().trim());
 			tempMatch.ht = children[4].getChild("a").getValue().trim();
+			tempMatch.hr = children[4].getChildren("span")[0].getValue().trim();
+			tempMatch.hy = children[4].getChildren("span")[1].getValue().trim();
 			tempMatch.at = children[6].getChild("a").getValue().trim();
+			tempMatch.ar = children[6].getChildren("span")[2].getValue().trim();
+			tempMatch.ay = children[6].getChildren("span")[1].getValue().trim();
 			var score = children[5].getValue().split(" - ");
 			tempMatch.hg = Number(score[0]);
 			tempMatch.ag = Number(score[1]);
