@@ -66,12 +66,12 @@
 						{field: 'hg', label: 'Home Goals', type: 'int'},
 						{field: 'ag', label: 'Away Goals', type: 'int'},
 						{field: 'as', label: 'Away Shots on target', type: 'int'},
-						{field: 'aa', label: 'Away Attacks', type: 'int'},
-						{field: 'rate', label: 'rate', type: 'int'},
+						{field: 'X', label: 'Predicted outcome', type: 'int'},
+						{field: 'F', label: 'Predicted strenght', type: 'int'},
 
 					],
 					columns: [
-						{field: 'min', text: 'min', size: '4%', sortable: true},
+						{field: 'min', text: 'min', tooltip: 'Minute', size: '4%', sortable: true},
 						{field: 'le', text: 'League', size: '16%', min: '100px', sortable: true},
 						{
 							field: 'ht', text: '', size: '20%', min: '100px',
@@ -97,8 +97,8 @@
 								return '<div>' + rec.at + ' ' + (rec.ar && '🟥'.repeat(rec.ar)) + (rec.ay && '🟨'.repeat(rec.ay)) + '</div>';
 							}
 						},
-						{field: 'X', text: 'X', size: '4%', sortable: true},
-						{field: 'F', text: '%', size: '4%', sortable: true},
+						{field: 'X', text: 'X', tooltip: 'Predicted outcome', size: '4%', sortable: true},
+						{field: 'F', text: '%', tooltip: 'Predicted strenght', size: '4%', sortable: true},
 					],
 					records: data
 				});
